@@ -1,0 +1,34 @@
+# secrets are read-only-bind-mounted on /run/secrets/<secret_name>
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: /requirements/nginx/
+      dockerfile: Dockerfile
+      additional_context: 
+        - name=../tools/
+    env_file: .env
+    ports:
+      - "443:443"
+#    expose:
+#      - 80
+    secrets:
+      - db_credentials
+    volumes:
+      - wordpress_files:/ #################
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - inception-network      
+    restart: unless-stopped
+
+volumes:
+  wordpress_files:
+
+networks:
+  - inception-network
+
+secrets:
+  db_credentials:
+    file: ../secrets/db_credentials
