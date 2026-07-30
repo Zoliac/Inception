@@ -1,8 +1,14 @@
-FROM debian:oldstable
+FROM bullseye:oldstable
+
+COPY . .
 
 WORKDIR /
 
-RUN apt update && apt install -y curl nginx
+RUN apk update --no-cache \
+    && apk add --no-cache mariadb mariadb-client gettext-envsubst \
+    && mkdir -p /var/lib/mysql /run/mysqld \
+    && chown -R mysql:mysql /var/lib/mysql /run/mysqld \
+    && mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 
 COPY conf/my.conf /etc/grafana/.my.cnf
 COPY tools/entrypoint.sh .
