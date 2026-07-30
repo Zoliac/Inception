@@ -1,16 +1,16 @@
 DC_FILE=/srcs/docker-compose.yml
 DC=docker compose -f $(DC_FILE)
 
-DOMAIN= ameduboi.42.fr
+DOMAIN= lpatin.42.fr
 
-VOL_PATH= /home/ameduboi/data
+VOL_PATH= /home/lpatin/data
 
 all: pre up
 
 pre:
-	@mkdir -p /home/ameduboi/data
+	@mkdir -p /home/lpatin/data
 	@if [ ! -f /etc/docker/daemon.json ]; then \
-		echo "{\n\"data-root\": \"/home/ameduboi/data/docker\"\n}" | sudo tee /etc/docker/daemon.json > /dev/null; \
+		echo "{\n\"data-root\": \"/home/lpatin/data/docker\"\n}" | sudo tee /etc/docker/daemon.json > /dev/null; \
 		sudo systemctl restart docker; \
 	fi
 	@line="127.0.0.1 ${DOMAIN}"; \
