@@ -34,3 +34,5 @@ re:
 	clean all
 
 .PHONY: all pre up down clean re fclean
+
+EXPOSE 443

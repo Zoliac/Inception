@@ -1,4 +1,6 @@
-FROM debian:oldstable
+FROM bullseye:oldstable
+
+COPY . .
 
 WORKDIR /
 
@@ -9,6 +11,6 @@ COPY tools/entrypoint.sh .
 
 RUN chmod +x entrypoint.sh 
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./tools/entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]

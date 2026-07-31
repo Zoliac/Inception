@@ -4,13 +4,13 @@ COPY . .
 
 WORKDIR /
 
-RUN apt update && apt install -y curl mariadb
+RUN apt update && apt install -y curl wordpress
 
 COPY conf/my.conf /etc/grafana/.my.cnf
 COPY tools/entrypoint.sh .
 
 RUN chmod +x entrypoint.sh 
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./tools/entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
