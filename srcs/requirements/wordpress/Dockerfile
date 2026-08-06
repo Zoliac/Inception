@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.23.5
 # au final on va utiliser alpine mdr, bullseye je comprends moins
 
 # installer php

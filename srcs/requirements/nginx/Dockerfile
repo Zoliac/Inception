@@ -1,5 +1,4 @@
-
-FROM alpine:3.21.2
+FROM alpine:3.23.5
 # au final on va utiliser alpine mdr, bullseye je comprends moins
  
 #installer toutes les dependences dont on a besoin, ssl, nginx
